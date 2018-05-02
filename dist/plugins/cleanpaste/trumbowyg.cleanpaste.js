@@ -12,7 +12,6 @@
 
 (function ($) {
     'use strict';
-
     function checkValidTags(snippet) {
         var theString = snippet;
 
@@ -84,7 +83,7 @@
         html = html.replace(/<\/[^ >]+:[^>]*>/g, '');
 
         // remove unwanted tags
-        html = html.replace(/<(div|span|style|meta|link).*?>/gi, '');
+        html = html.replace(/<(div|span|style|meta|link|pclass|a).*?>/gi, '');
 
         return html;
     }
@@ -98,15 +97,12 @@
             cleanPaste: {
                 init: function (trumbowyg) {
                     trumbowyg.pasteHandlers.push(function () {
-                        try {
-                            trumbowyg.$ed.html(cleanIt(trumbowyg.$ed.html()));
-                        } catch (c) {
-                        }
+                        setTimeout(function(){
+                          trumbowyg.$ed.html(cleanIt(trumbowyg.$ed.html()));
+                        }, 0);
                     });
                 }
             }
         }
     });
 })(jQuery);
-
-
